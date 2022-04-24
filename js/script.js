@@ -38,4 +38,56 @@ window.addEventListener("DOMContentLoaded", () => {
 
   hideTabContent();
   showTabContent(0);
+
+  // TIMER
+
+  const deadline = "2022-05-21";
+
+  function getTimeRemaining(endtime) {
+    const t = Date.parse(endtime) - Date.parse(new Date());
+    const days = Math.floor(t / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((t / 1000 / 60) % 60);
+    const seconds = Math.floor((t / 1000) % 60);
+
+    return {
+      total: t,
+      days: days,
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds,
+    };
+  }
+
+  function addZero(num) {
+    return num >= 0 && num < 10 ? `0${num}` : num;
+  }
+
+  function setClock(selector, endtime) {
+    const timer = document.querySelector(selector),
+      days = timer.querySelector("#days"),
+      hours = timer.querySelector("#hours"),
+      minutes = timer.querySelector("#minutes"),
+      seconds = timer.querySelector("#seconds");
+    timeInterval = setInterval(updateClock, 1000);
+
+    updateClock();
+
+    function updateClock() {
+      const t = getTimeRemaining(endtime);
+      days.innerHTML = addZero(t.days);
+      hours.innerHTML = addZero(t.hours);
+      minutes.innerHTML = addZero(t.minutes);
+      seconds.innerHTML = addZero(t.seconds);
+      if (t.total <= 0) {
+        clearInterval(timeInterval);
+        days.innerHTML = "00";
+        hours.innerHTML = "00";
+        minutes.innerHTML = "00";
+        seconds.innerHTML = "00";
+      }
+    }
+  }
+
+  setClock(".timer", deadline);
 });
