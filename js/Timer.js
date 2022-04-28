@@ -1,6 +1,7 @@
 export default class Timer {
-  constructor(deadline) {
+  constructor(deadline, selector) {
     this.deadline = deadline;
+    this.selector = selector;
     this.updateClock();
     this.timeInterval;
   }
@@ -30,7 +31,7 @@ export default class Timer {
   }
 
   setClock() {
-    const timer = document.querySelector(".timer"),
+    const timer = document.querySelector(this.selector),
       days = timer.querySelector("#days"),
       hours = timer.querySelector("#hours"),
       minutes = timer.querySelector("#minutes"),

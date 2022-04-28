@@ -5,7 +5,7 @@ import Timer from "./Timer.js";
 window.addEventListener("DOMContentLoaded", () => {
   modal();
   tabs();
-  let myTimer = new Timer("2022-05-23");
+  let myTimer = new Timer("2022-05-23", ".timer");
 
   new MenuCard(
     "img/tabs/vegy.jpg",
