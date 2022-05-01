@@ -1,29 +1,26 @@
 export default function modal() {
-  const modalTriger = document.querySelectorAll("[data-modal]");
-  const modal = document.querySelector(".modal");
-  const modalCloseBtn = document.querySelector("[data-close]");
-  let modalFlag = false;
+  const modalTrigger = document.querySelectorAll("[data-modal]"),
+    modal = document.querySelector(".modal");
 
-  modalTriger.forEach((btn) => {
+  modalTrigger.forEach((btn) => {
     btn.addEventListener("click", openModal);
   });
 
-  function openModal() {
-    modal.classList.toggle("show");
-    document.body.style.overflow = "hidden";
-    modalFlag = true;
-    clearInterval(modalTimerId);
-  }
-
   function closeModal() {
-    modal.classList.toggle("show");
+    modal.classList.add("hide");
+    modal.classList.remove("show");
     document.body.style.overflow = "";
   }
 
-  modalCloseBtn.addEventListener("click", closeModal);
+  function openModal() {
+    modal.classList.add("show");
+    modal.classList.remove("hide");
+    document.body.style.overflow = "hidden";
+    clearInterval(modalTimerId);
+  }
 
-  modal.addEventListener("click", function (e) {
-    if (e.target == modal) {
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal || e.target.getAttribute("data-close") == "") {
       closeModal();
     }
   });
@@ -34,18 +31,17 @@ export default function modal() {
     }
   });
 
-  const modalTimerId = setTimeout(openModal, 500000);
+  const modalTimerId = setTimeout(openModal, 300000);
+  // Изменил значение, чтобы не отвлекало
 
   function showModalByScroll() {
     if (
       window.pageYOffset + document.documentElement.clientHeight >=
-        document.documentElement.scrollHeight - 1 &&
-      !modalFlag
+      document.documentElement.scrollHeight
     ) {
       openModal();
       window.removeEventListener("scroll", showModalByScroll);
     }
   }
-
   window.addEventListener("scroll", showModalByScroll);
 }
