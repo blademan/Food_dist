@@ -34,6 +34,4 @@ window.addEventListener("DOMContentLoaded", () => {
     33,
     ".menu .container"
   ).render();
-
-  //FORMS
 });
