@@ -9,29 +9,26 @@ window.addEventListener("DOMContentLoaded", () => {
   form();
   let myTimer = new Timer("2022-05-23", ".timer");
 
-  new MenuCard(
-    "img/tabs/vegy.jpg",
-    "post",
-    'Меню "Фитнес"',
-    ' Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-    100,
-    ".menu .container"
-  ).render();
+  //GET MENU CARDS
+  async function getResource(url) {
+    let res = await fetch(url);
 
-  new MenuCard(
-    "img/tabs/elite.jpg",
-    "post",
-    'Меню "Фитнес"',
-    ' Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-    64,
-    ".menu .container"
-  ).render();
-  new MenuCard(
-    "img/tabs/post.jpg",
-    "post",
-    'Меню "Фитнес"',
-    ' Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-    33,
-    ".menu .container"
-  ).render();
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    }
+
+    return await res.json();
+  }
+  getResource("http://localhost:3000/menu").then((data) => {
+    data.forEach(({ img, altimg, title, descr, price }) => {
+      new MenuCard(
+        img,
+        altimg,
+        title,
+        descr,
+        price,
+        ".menu .container"
+      ).render();
+    });
+  });
 });
