@@ -18,7 +18,8 @@ window.addEventListener("DOMContentLoaded", () => {
     "total",
     "current",
     "offer__slider-wrapper",
-    "offer__slider-inner"
+    "offer__slider-inner",
+    "offer__slider"
   );
 
   axios.get("http://localhost:3000/menu").then((response) => {
