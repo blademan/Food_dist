@@ -1,4 +1,4 @@
-export default class Timer {
+class Timer {
   constructor(deadline, selector) {
     this.deadline = deadline;
     this.selector = selector;
@@ -53,3 +53,5 @@ export default class Timer {
     }
   }
 }
+
+export default Timer;

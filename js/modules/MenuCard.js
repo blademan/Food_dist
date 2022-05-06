@@ -1,4 +1,4 @@
-export default class MenuCard {
+class MenuCard {
   constructor(src, alt, title, descr, price, parentSelector) {
     this.src = src;
     this.alt = alt;
@@ -32,3 +32,5 @@ export default class MenuCard {
     this.parent.append(element);
   }
 }
+
+export default MenuCard;

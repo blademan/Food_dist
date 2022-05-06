@@ -1,4 +1,4 @@
-export default class Slider {
+class Slider {
   constructor(
     slides,
     prev,
@@ -179,3 +179,4 @@ export default class Slider {
     });
   }
 }
+export default Slider;

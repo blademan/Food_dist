@@ -1,6 +1,4 @@
-import openModal from "./Modal.js";
-
-export default function form() {
+function form() {
   const forms = document.querySelectorAll("form");
   const message = {
     loading: "img/form/spinner.svg",
@@ -52,7 +50,6 @@ export default function form() {
 
       postData("http://localhost:3000/requests", json)
         .then((data) => {
-          console.log(data);
           showThanksModal(message.success);
           statusMessage.remove();
         })
@@ -89,3 +86,5 @@ export default function form() {
     }, 4000);
   }
 }
+
+export default form;

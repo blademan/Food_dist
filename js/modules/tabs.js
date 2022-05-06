@@ -1,4 +1,4 @@
-export default function Tabs() {
+function tabs() {
   const tabsParentEL = document.querySelector(".tabheader__items");
   const tabsBtnEl = document.querySelectorAll(".tabheader__item");
   const tabsContentEL = document.querySelectorAll(".tabcontent");
@@ -39,3 +39,5 @@ export default function Tabs() {
   hideTabContent();
   showTabContent(0);
 }
+
+export default tabs;
