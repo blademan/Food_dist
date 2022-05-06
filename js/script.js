@@ -5,11 +5,16 @@ import MenuCard from "./modules/MenuCard.js";
 import Slider from "./modules/Slider.js";
 import Timer from "./modules/Timer.js";
 import calc from "./modules/calc.js";
+import { openModal } from "./modules/modal.js";
 
 window.addEventListener("DOMContentLoaded", () => {
+  const modalTimerId = setTimeout(
+    () => openModal(".modal", modalTimerId),
+    50000
+  );
   tabs();
-  form();
-  modal();
+  form("form", modalTimerId);
+  modal("[data-modal]", ".modal", modalTimerId);
   calc();
 
   let slider = new Slider(
@@ -37,6 +42,4 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   let timer = new Timer("2022-05-23", ".timer");
-
-  //CALC
 });
